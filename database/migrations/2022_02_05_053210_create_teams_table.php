@@ -17,7 +17,7 @@ class CreateTeamsTable extends Migration
             $table->bigIncrements('id');
             $table->string('team_name')->nullable(false);
             $table->string('homepage');
-            $table->timestamps('created_at');
+            $table->timestamp('created_at');
         });
     }
 
