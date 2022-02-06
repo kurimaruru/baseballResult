@@ -9,9 +9,11 @@
 </head>
 
 <body>
-  <div>
-    <h1>This is Top Page</h1>
-  </div>
+  <h3>登録チーム</h3>
+  @foreach ($team as $x)
+  <p>{{$x->team_name}}</p>
+  <p>{{$x->homepage}}</p>
+  @endforeach
 </body>
 
 </html>

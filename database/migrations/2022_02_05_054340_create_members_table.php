@@ -14,13 +14,15 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name')->nullable(false)->unique();
-            $table->integer('back_number')->nullable(false)->unique();
+            $table->unsignedBigInteger('admin_id');
+            $table->string('name')->nullable(false);
+            $table->integer('back_number')->nullable(false);
             $table->integer('position');
             $table->string('dominant');
             $table->string('role');
-            $table->timestamps();
+            $table->timestamp('created_at');
+            $table->foreign('admin_id')->references('id')->on('users');
+            $table->unique('name','back_number');
         });
     }
 
