@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\PlayerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/top', function () {
-    return view('top');
-});
-
-Route::get('/phpinfo', function () {
-    phpinfo();
-});
-
-//チーム登録
-Route::resource('/team',TeamController::class)->except(['show'])->middleware('auth');
-
-//メンバー登録
-Route::resource('/members',MembersController::class)->except(['show'])->middleware('auth');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('player',PlayerController::class)->except('show');
 
 
 
