@@ -7,11 +7,10 @@
     <div>
         <nav class="navbar navbar-expand navbar-dark blue-gradient">
             @auth
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('members.create') }}">選手登録する</a>
-                <a href="{{route('team.create')}}">チームを登録する</a>
-                {{--この行のhref属性を変更--}}
-            </li>
+            <a href="{{route('player.create')}}"
+                class="px-2 py-1 bg-blue-400 text-xs text-black font-semibold rounded hover:bg-blue-500">プロフィールを作成する</a>
+            <a href="{{route('player.index')}}"
+                class="px-2 py-1 bg-blue-400 text-xs text-black font-semibold rounded hover:bg-blue-500">プロフィール</a>
             @endauth
         </nav>
     </div>
@@ -19,7 +18,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+                    Login
                 </div>
             </div>
         </div>
