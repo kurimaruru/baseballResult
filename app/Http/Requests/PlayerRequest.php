@@ -25,6 +25,7 @@ class PlayerRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50',
+            'image' => 'image|mimes:jpg,jpeg,png|max:2048',
             'position' => 'required|integer',
             'throw' => 'required|string|max:10',
             'hitting' => 'required|string|max:10',

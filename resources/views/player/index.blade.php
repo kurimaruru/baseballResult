@@ -19,10 +19,35 @@
           <div class="w-1/2 p-4">
             <div class="border rounded-md p-4">
               <div class="mb-4">
-                <p>{{$player->name}}</p>
-                <p>{{$player->position}}</p>
-                <p>{{$player->throw}}</p>
-                <p>{{$player->hitting}}</p>
+                <table>
+                  <thead>
+                    <th>編集</th>
+                    <th>名前</th>
+                    <th>画像</th>
+                    <th>ポジション</th>
+                    <th>投</th>
+                    <th>打</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a href="{{route('player.edit',['player'=>$player->id])}}">編集</a></td>
+                      <td>{{$player->name}}</td>
+                      <td>
+                        @php
+                        $path = 'storage/images/';
+                        @endphp
+                        @if (empty($player->image))
+                        <img src="{{asset('images/noimage.png')}}" alt="image" style="height: 200px;width:200px;">
+                        @else
+                        <img src="{{asset($path . $player->image)}}" alt="image" style="height: 200px;width:200px;">
+                        @endif
+                      </td>
+                      <td>{{$player->position}}</td>
+                      <td>{{$player->throw}}</td>
+                      <td>{{$player->hitting}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

@@ -17,6 +17,7 @@ class PlayerSeeder extends Seeder
         DB::table('players')->insert([
             'player_id'=>'1',
             'name'=>'test1',
+            'image' => '',
             'position'=>'1',
             'throw'=>'right',
             'hitting'=>'left',
@@ -26,6 +27,7 @@ class PlayerSeeder extends Seeder
         DB::table('players')->insert([
             'player_id'=>'2',
             'name'=>'test2',
+            'image' => '',
             'position'=>'2',
             'throw'=>'right',
             'hitting'=>'left',
@@ -35,6 +37,7 @@ class PlayerSeeder extends Seeder
         DB::table('players')->insert([
             'player_id'=>'3',
             'name'=>'test3',
+            'image' => '',
             'position'=>'3',
             'throw'=>'right',
             'hitting'=>'left',

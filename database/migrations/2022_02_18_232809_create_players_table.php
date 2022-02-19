@@ -17,9 +17,11 @@ class CreatePlayersTable extends Migration
             $table->id();
             $table->foreignId('player_id')
             ->constrained()
+            ->unique()
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->string('name');
+            $table->string('image');
             $table->integer('position');
             $table->string(('throw'));
             $table->string('hitting');

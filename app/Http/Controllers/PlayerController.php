@@ -9,6 +9,7 @@ use App\Http\Requests\PlayerRequest;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 use App\Models\player;
+use App\Services\ImageService;
 
 class PlayerController extends Controller
 {
@@ -46,11 +47,16 @@ class PlayerController extends Controller
      */
     public function store(PlayerRequest $request)
     {
+
         try{
+
             DB::transaction(function() use($request){
+            $imageFile = $request->file('image');
+            $imageToStore = ImageService::upload($imageFile,'images');
             player::create([
             'player_id'=>Auth::id(),
             'name' => $request->name,
+            'image' => $imageToStore,
             'position' => $request->position,
             'throw' => $request->throw,
             'hitting' => $request->hitting,
@@ -61,19 +67,10 @@ class PlayerController extends Controller
             throw $e;
         }
 
+
+
         return redirect()->route('player.index');
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -84,7 +81,8 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $player = DB::table('players')->find($id);
+        return view('player.edit',compact('player'));
     }
 
     /**
@@ -94,9 +92,19 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PlayerRequest $request, $id)
     {
-        //
+        $imageFile = $request->file('image');
+        $imageToStore = ImageService::upload($imageFile,'images');
+        $player = player::findOrFail($id);
+        $player->name = $request->name;
+        $player->image = $imageToStore;
+        $player->position = $request->position;
+        $player->throw = $request->throw;
+        $player->hitting = $request->hitting;
+        $player->save();
+        return redirect()->route('player.index');
+
     }
 
     /**
